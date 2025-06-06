@@ -1,7 +1,7 @@
 {
   "name": "templateplugin",
   "version-string": "1.0.0",
-  "description": "TemplatePlugin",
+  "description": "",
   "features": {
     "plugin": {
       "description": "Build the SKSE plugin.",
@@ -12,11 +12,9 @@
         "directxtk",
         "rapidcsv",
         "spdlog",
-        "glm",
+        "clib-util",
         "toml11",
-        "nlohmann-json",
-        "gluino",
-        "clib-util"
+        "nlohmann-json"
       ]
     }
   },

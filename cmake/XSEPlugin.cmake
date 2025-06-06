@@ -1,16 +1,10 @@
 option(BUILD_SKYRIM "Build for Skyrim" OFF)
-option(BUILD_FALLOUT4 "Build for Fallout 4" OFF)
 
 if(BUILD_SKYRIM)
 	add_compile_definitions(SKYRIM)
 	set(CommonLibPath "extern/CommonLib")
 	set(CommonLibName "CommonLibSSE")
 	set(GameVersion "Skyrim")
-elseif(BUILD_FALLOUT4)
-	add_compile_definitions(FALLOUT4)
-	set(CommonLibPath "extern/CommonLibF4/CommonLibF4")
-	set(CommonLibName "CommonLibF4")
-	set(GameVersion "Fallout 4")
 else()
 	message(
 		FATAL_ERROR
@@ -64,8 +58,6 @@ set(Boost_USE_STATIC_RUNTIME ON)
 
 add_compile_definitions(NOMINMAX)
 add_compile_definitions(_UNICODE)
-
-
 
 if(MSVC)
 
@@ -124,8 +116,13 @@ if(MSVC)
 		"$<$<CONFIG:DEBUG>:/INCREMENTAL;/OPT:NOREF;/OPT:NOICF>"
 		"$<$<CONFIG:RELEASE>:/LTCG;/INCREMENTAL:NO;/OPT:REF;/OPT:ICF;/DEBUG:FULL>"
 	)
-endif()
 
+else()
+	message(
+		FATAL_ERROR
+		"Only MSVC is supported at the moment."
+	)
+endif()
 
 add_subdirectory(${CommonLibPath} ${CommonLibName} EXCLUDE_FROM_ALL)
 
