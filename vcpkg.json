@@ -1,22 +1,22 @@
 {
-  "name": "templateplugin",
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "plugin",
   "version-string": "1.0.0",
   "description": "",
   "features": {
     "plugin": {
-      "description": "Build the SKSE plugin.",
+      "description": "Build the plugin.",
       "dependencies": [
-        "xbyak",
-        "catch2",
-        "fmt",
-        "directxtk",
         "rapidcsv",
+        "directxtk",
         "spdlog",
         "clib-util",
-        "toml11",
-        "nlohmann-json"
+        "detours",
+        "xbyak",
+        "simpleini"
       ]
     }
   },
-  "default-features": ["plugin"]
+  "default-features": ["plugin"],
+  "overrides": []
 }

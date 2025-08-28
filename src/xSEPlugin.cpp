@@ -1,51 +1,6 @@
-
-#define USE_CONSOLE
+#include "Util/Logger/Logger.hpp"
 
 namespace {
-
-	void InitializeLogging() {
-
-		std::shared_ptr <spdlog::logger> log;
-
-		#ifdef USE_CONSOLE
-
-			Util::Win32::AllocateConsole();
-
-			log = std::make_shared<spdlog::logger>("Global", std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
-
-			log->set_pattern("[%H:%M:%S.%e] [%^%l%$] [%s:%#] %v");
-
-			spdlog::set_default_logger(std::move(log));
-			spdlog::set_level(spdlog::level::level_enum::trace);
-			spdlog::flush_on(spdlog::level::level_enum::trace);
-
-		#else
-
-			auto path = log::log_directory();
-
-			if (!path) {
-				SKSE::stl::report_and_fail("Unable to lookup SKSE logs directory.");
-			}
-
-			*path /= PluginDeclaration::GetSingleton()->GetName();
-			*path += L".log";
-
-
-			log = std::make_shared <spdlog::logger>("Global", std::make_shared <spdlog::sinks::basic_file_sink_mt>(path->string(), true));
-			log->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%l] [%s:%#] %v");
-
-			#ifdef DEBUG
-				spdlog::set_default_logger(std::move(log));
-				spdlog::set_level(spdlog::level::level_enum::debug);
-				spdlog::flush_on(spdlog::level::level_enum::debug);
-			#else
-				spdlog::set_default_logger(std::move(log));
-				spdlog::set_level(spdlog::level::level_enum::warn);
-				spdlog::flush_on(spdlog::level::level_enum::warn);
-			#endif
-
-		#endif
-	}
 
 	void InitializeMessaging() {
 
@@ -122,14 +77,13 @@ namespace {
 }
 
 SKSEPluginLoad(const LoadInterface * a_SKSE) {
+
 	WaitForDebugger();
 
 	Init(a_SKSE);
 
-	InitializeLogging();
+	logger::Initialize();
 	InitializeMessaging();
-
-
 
 	logger::info("SKSEPluginLoad OK");
 
