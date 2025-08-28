@@ -1,4 +1,5 @@
 #include "Util/Logger/Logger.hpp"
+#include "Version.hpp"
 
 namespace {
 
@@ -91,8 +92,8 @@ SKSEPluginLoad(const LoadInterface * a_SKSE) {
 }
 
 SKSEPluginInfo(
-	.Version = REL::Version { 1, 0, 0, 0 },
-	.Name = "TemplatePlugin",
+	.Version = Plugin::ModVersion,
+	.Name = Plugin::ModName,
 	.Author = "BingusEx",
 	.StructCompatibility = SKSE::StructCompatibility::Independent,
 	.RuntimeCompatibility = SKSE::VersionIndependence::AddressLibrary
