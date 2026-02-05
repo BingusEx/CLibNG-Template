@@ -99,24 +99,15 @@
 #include <RE/Skyrim.h>
 #include <REL/Relocation.h>
 
-#include <ShlObj_core.h>
-#include <Windows.h>
-#include <Psapi.h>
-
 #include <spdlog/sinks/msvc_sink.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-#define DLLEXPORT __declspec(dllexport)
-
+namespace logger = SKSE::log;
 using namespace std::literals;
 using namespace REL::literals;
-
-namespace logger = SKSE::log;
-
-using namespace SKSE;
 using namespace RE;
-using namespace REL;
 
 //Global Includes
-#include "Util/Util.hpp"
+#include "Util/Text/Text.hpp"
+#include "Util/Windows/MessageBox.hpp"

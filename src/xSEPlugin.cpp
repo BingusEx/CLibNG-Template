@@ -5,60 +5,60 @@ namespace {
 
 	void InitializeMessaging() {
 
-		if (!GetMessagingInterface()->RegisterListener([](MessagingInterface::Message* a_Message) {
+		if (!SKSE::GetMessagingInterface()->RegisterListener([](SKSE::MessagingInterface::Message* a_Message) {
 
 			switch (a_Message->type) {
 
 				// Called after all plugins have finished running SKSEPluginLoad.
-				case MessagingInterface::kPostLoad:{
+				case SKSE::MessagingInterface::kPostLoad:{
 					logger::debug("kPostLoad");
 					break;
 				}
 
 				// Called after all kPostLoad message handlers have run.
-				case MessagingInterface::kPostPostLoad:{
+				case SKSE::MessagingInterface::kPostPostLoad:{
 					logger::debug("kPostPostLoad");
 					break;
 				}
 
 				// Called when all game data has been found.
-				case MessagingInterface::kInputLoaded:{
+				case SKSE::MessagingInterface::kInputLoaded:{
 					logger::debug("kInputLoaded");
 					break;
 				}
 
 				// All ESM/ESL/ESP plugins have loaded, main menu is now active.
-				case MessagingInterface::kDataLoaded:{
+				case SKSE::MessagingInterface::kDataLoaded:{
 					logger::debug("kDataLoaded");
 					break;
 				}
 
 				// Player's selected save game has finished loading.
-				case MessagingInterface::kPostLoadGame:{
+				case SKSE::MessagingInterface::kPostLoadGame:{
 					logger::debug("kPostLoadGame");
 					break;
 				}
 
 				// Player starts a new game from main menu.
-				case MessagingInterface::kNewGame:{
+				case SKSE::MessagingInterface::kNewGame:{
 					logger::debug("kNewGame");
 					break;
 				}
 
 				// Player selected a game to load, but it hasn't loaded yet, data will be the name of the loaded save.
-				case MessagingInterface::kPreLoadGame:{
+				case SKSE::MessagingInterface::kPreLoadGame:{
 					logger::debug("kPreLoadGame");
 					break;
 				}
 
 				// The player has saved a game.
-				case MessagingInterface::kSaveGame:{
+				case SKSE::MessagingInterface::kSaveGame:{
 					logger::debug("kSaveGame");
 					break;
 				}
 
 				// The player deleted a saved game from within the load menu, data will be the save name.
-				case MessagingInterface::kDeleteGame:{
+				case SKSE::MessagingInterface::kDeleteGame:{
 					logger::debug("kDeleteGame");
 					break;
 				}
@@ -77,11 +77,11 @@ namespace {
 	}
 }
 
-SKSEPluginLoad(const LoadInterface * a_SKSE) {
+SKSEPluginLoad(const SKSE::LoadInterface * a_SKSE) {
 
 	WaitForDebugger();
 
-	Init(a_SKSE);
+	SKSE::Init(a_SKSE);
 
 	logger::Initialize();
 	InitializeMessaging();

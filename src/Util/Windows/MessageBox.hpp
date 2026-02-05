@@ -6,7 +6,7 @@ namespace Util::Win32 {
 		MessageBoxA(
 			nullptr,
 			a_message.data(),
-			PluginDeclaration::GetSingleton()->GetName().data(),
+			SKSE::PluginDeclaration::GetSingleton()->GetName().data(),
 			MB_OK | MB_ICONERROR | MB_TOPMOST
 		);
 		TerminateProcess(GetCurrentProcess(), EXIT_FAILURE);
@@ -17,7 +17,7 @@ namespace Util::Win32 {
 		MessageBoxA(
 			nullptr,
 			a_message.data(),
-			PluginDeclaration::GetSingleton()->GetName().data(),
+			SKSE::PluginDeclaration::GetSingleton()->GetName().data(),
 			MB_OK | MB_ICONINFORMATION | MB_TOPMOST
 		);
 	}

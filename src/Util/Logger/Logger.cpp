@@ -19,8 +19,12 @@ namespace {
 	#define BLD "\033[1m"   //Bold
 	#define UDL "\033[4m"   //Underline
 
+	//Logger Fmt
+	#define LOG_HDR "[" MAG "TPL" WHT "]"
+
+
 	constexpr const char* PatternDefault = "[%Y-%m-%d %H:%M:%S.%e] [%l] [%s:%#] %v";
-	constexpr const char* PatternConsole = WHT "[" MAG "TPL" WHT "][%H:%M:%S.%e][%^%l%$][" YEL "%s:%#" WHT "]: %v" RST;
+	constexpr const char* PatternConsole = WHT LOG_HDR"[%H:%M:%S.%e][%^%l%$][" YEL "%s:%#" WHT "]: %v" RST;
 
 }
 
